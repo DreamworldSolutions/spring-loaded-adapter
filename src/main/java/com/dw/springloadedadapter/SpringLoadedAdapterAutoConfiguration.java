@@ -9,10 +9,11 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 
 @Configuration
 @ComponentScan
-@ConditionalOnProperty(value = {"com.dw.springloadedadapter.disable"}, havingValue = "false",
+@ConditionalOnProperty(value = {"springloadedadapter.disable"}, havingValue = "false",
     matchIfMissing = true)
 public class SpringLoadedAdapterAutoConfiguration {
 
@@ -48,7 +49,7 @@ public class SpringLoadedAdapterAutoConfiguration {
     FilterRegistrationBean filter = new FilterRegistrationBean(springLoadedAdapterFilter);
     filter.setFilter(springLoadedAdapterFilter);
     filter.addUrlPatterns("/spring-loaded/*");
-    filter.setOrder(1);
+    filter.setOrder(Ordered.HIGHEST_PRECEDENCE);
     return filter;
   }
 }
