@@ -31,7 +31,8 @@ paths:
       description: "
         - Client invoke api to given files and path details as multipart form data. \n
         - From multipart form data, one request key available which containe json string include array of change. \n
-        - If change.type is PUT then change.file add or replace on server`s given change.path location. 
+        - If change.type is CREATED then change.file add on server`s given change.path location. \n
+        - If change.type is UPDATED then change.file replace on server`s given change.path location. 
         
         #### Authorization
 
@@ -45,7 +46,7 @@ paths:
           type: file
           description: "- upload file which is created in local target directroy"
         - in: formData
-          name: "Upload updated file"
+          name: "Upload Updated file"
           type: file
           description: "- upload file which is updated in local target directroy"
         - in: formData
@@ -123,4 +124,4 @@ definitions:
         type: string
       type:
         type: string
-        description: "it is enum to hold PUT/DELETED constants"
+        description: "it is enum to hold CREATED/UPDATED/DELETED constants"
