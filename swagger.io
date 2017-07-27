@@ -30,9 +30,13 @@ paths:
       summary: "Uploaded file add/replace with given path."
       description: "
         - Client invoke api to given files and path details as multipart form data. \n
-        - From multipart form data, one request key available which containe json string include array of change. \n
+        - From multipart form data, one `request` key available which containe json string include array of change. \n
+        - Each uploaded file`s key (form-data map key) must be mention in request details text. and that request details provide detail about the file is create,update or detele on server also provide on which server location to given file replace/add/delete. \n 
         - If change.type is CREATED then change.file add on server`s given change.path location. \n
-        - If change.type is UPDATED then change.file replace on server`s given change.path location. 
+        - If change.type is UPDATED then change.file replace on server`s given change.path location. \n
+        - If change.type is DELETED then only given path in request dto. \n
+        - Usre can give multiple path to request for delete files.
+        - Request.path is path of file or directroy where chagnes made. \n
         
         #### Authorization
 
@@ -64,42 +68,11 @@ paths:
             $ref: "#/definitions/Error"
         400: 
           description: "
-          - If request not found in form data or request json string not parsable \n
-          - If request array size not match with total no of uploaded file. \n
-          - If uploaded file name not fount in request detail."
+          - If request not found in form data or request json string not parsable or empty array of request \n
+          - If uploaded file`s keynot fount in request detail."
           schema: 
             $ref: "#/definitions/Error"
   
-    delete:
-      tags:
-        - 'Spring-loaded'
-      summary: "Delete file/dir on given path location"
-      description: "
-        - Delete files and directory from server`s given path location. \n
-        - User can give multiple different file location.
-        
-        #### Authorization
-
-        N/A"
-      
-      parameters: 
-        - in: query
-          name: "path"
-          required: true
-          type: array
-          items:
-            type: string
-          description: "- array of path which want to remove directory/file on server"
-          
-      responses:
-        204: 
-          description: "- If files/directroies successfully deleted on server`s given path location."
-        404: 
-          description: "- if paths have invalid string"
-          schema: 
-            $ref: "#/definitions/Error"
-              
-
 ################################################################################
 #                                 Definitions                                  #
 ################################################################################
