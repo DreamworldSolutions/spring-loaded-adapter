@@ -40,7 +40,7 @@ public class SpringLoadedAdapterAutoConfiguration {
    * @return {@link SpringLoadedAdapterFilter} instance.
    */
   @Bean
-  public FilterRegistrationBean companyContextFilter() {
+  public FilterRegistrationBean springLoadedAdapterFilter() {
     logger.debug("companyContextFilter() :: Initializing Spring loaded filter bean.....");
 
     SpringLoadedAdapterFilter springLoadedAdapterFilter = new SpringLoadedAdapterFilter();
