@@ -32,7 +32,7 @@ public class SpringLoadedAdapterService {
    * with '/'.
    */
   public SpringLoadedAdapterService(
-      @Value("${springloadedadapter.classDir:/app/BOOT-INF/classes}") String basePath) {
+      @Value("${springloadedadapter.classDir:/app}") String basePath) {
 
     if (!StringUtils.startsWith(basePath, "/") || StringUtils.endsWith(basePath, "/")) {
       throw new RuntimeException("Base path either not start with / or end with /");
